@@ -15,3 +15,8 @@ variable "tags" {
     team        = "DevOps"
   }
 }
+
+variable "vm_admin_username" {
+  type    = string
+  default = "adminuser"
+}
