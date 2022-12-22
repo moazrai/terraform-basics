@@ -12,3 +12,11 @@ resource "azurerm_virtual_network" "vnet" {
 
   tags = var.tags
 }
+
+resource "azurerm_public_ip" "vm-public-ip" {
+  name                = "vm-public-ip"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  allocation_method   = "Static"
+  tags                = var.tags
+}
