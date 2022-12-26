@@ -7,6 +7,13 @@ terraform {
     }
   }
 
+  backend "azurerm" {
+    resource_group_name  = "tutorial-tfstate-rg"
+    storage_account_name = "tutorialtfhj8tetzd"
+    container_name       = "tutorial-core-tfstate"
+    key                  = "core.tutorial.tfstate"
+  }
+
   required_version = ">= 1.1.0"
 }
 

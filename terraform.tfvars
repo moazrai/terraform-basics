@@ -1,4 +1,5 @@
-resource_group_name = "my-rg"
+resource_group_name = "vm-rg"
+company             = "tutorial"
 location            = "centralus"
 tags = {
   environment = "dev"

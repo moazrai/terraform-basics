@@ -1,5 +1,7 @@
+## VM Outputs
+
 output "resource_group_id" {
-  value = azurerm_resource_group.rg.id
+  value = azurerm_resource_group.vm-rg.id
 }
 
 output "tls_private_key" {
@@ -9,4 +11,19 @@ output "tls_private_key" {
 
 output "vm_public_ip" {
   value = azurerm_public_ip.vm_public_ip.ip_address
+}
+
+
+## State Outputs
+
+output "terraform_state_resource_group_name" {
+  value = azurerm_resource_group.state-rg.name
+}
+
+output "terraform_state_storage_account" {
+  value = azurerm_storage_account.state-sta.name
+}
+
+output "terraform_state_storage_container_core" {
+  value = azurerm_storage_container.core-container.name
 }

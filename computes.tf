@@ -1,7 +1,7 @@
 resource "azurerm_linux_virtual_machine" "vm" {
   name                = "tutorial-vm"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.vm-rg.location
+  resource_group_name = azurerm_resource_group.vm-rg.name
   size                = "Standard_D2ads_v5"
   admin_username      = var.vm_admin_username
   network_interface_ids = [
