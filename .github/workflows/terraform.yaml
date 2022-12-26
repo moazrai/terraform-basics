@@ -25,7 +25,9 @@ jobs:
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_subcommand: "fmt -check"
+          tf_actions_subcommand: "fmt"
+        env:
+          TF_CLI_ARGS: "-check"
 
       - name: Terraform Init
         id: init
@@ -39,7 +41,9 @@ jobs:
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_subcommand: "validate -no-color"
+          tf_actions_subcommand: "validate"
+        env:
+          TF_CLI_ARGS: "-no-color"
 
       - name: Terraform Plan
         id: plan
@@ -48,7 +52,9 @@ jobs:
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: 0.14.8
-          tf_actions_subcommand: "plan -no-color -input=false"
+          tf_actions_subcommand: "plan"
+        env:
+          TF_CLI_ARGS: "-no-color -input=false"
 
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
