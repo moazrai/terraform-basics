@@ -5,6 +5,8 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   terraform:
@@ -56,10 +58,11 @@ jobs:
         env:
           TF_CLI_ARGS: "-no-color -input=false"
 
-      - uses: actions/github-script@v6
+      - name: Add Terraform plan output to PR
+        uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+          PLAN: "terraform\n${{ steps.plan.outputs.tf_actions_plan_output }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
