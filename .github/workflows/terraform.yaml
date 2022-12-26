@@ -5,6 +5,8 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   terraform:
@@ -56,7 +58,8 @@ jobs:
         env:
           TF_CLI_ARGS: "-no-color -input=false"
 
-      - uses: actions/github-script@v6
+      - name: Add plan output on PR
+        uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.tf_actions_plan_output }}"
@@ -71,7 +74,7 @@ jobs:
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            ${process.env.PLAN}
+            ${tf_actions_plan_has_changes ? steps.plan.outputs.tf_actions_plan_output : "No changes. Your infrastructure matches the configuration."}
             \`\`\`
 
             </details>
