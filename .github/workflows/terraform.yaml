@@ -15,6 +15,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      TF_VERSION: latest
 
     steps:
       - name: Checkout
@@ -24,7 +25,7 @@ jobs:
         id: fmt
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.14.8
+          tf_actions_version: ${{ env.TF_VERSION }}
           tf_actions_subcommand: "fmt"
         env:
           TF_CLI_ARGS: "-check"
@@ -33,14 +34,14 @@ jobs:
         id: init
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.14.8
+          tf_actions_version: ${{ env.TF_VERSION }}
           tf_actions_subcommand: "init"
 
       - name: Terraform Validate
         id: validate
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.14.8
+          tf_actions_version: ${{ env.TF_VERSION }}
           tf_actions_subcommand: "validate"
         env:
           TF_CLI_ARGS: "-no-color"
@@ -51,7 +52,7 @@ jobs:
         continue-on-error: true
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.14.8
+          tf_actions_version: ${{ env.TF_VERSION }}
           tf_actions_subcommand: "plan"
         env:
           TF_CLI_ARGS: "-no-color -input=false"
