@@ -74,7 +74,7 @@ jobs:
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            ${steps.plan.outputs.tf_actions_plan_has_changes ? steps.plan.outputs.tf_actions_plan_output : "No changes. Your infrastructure matches the configuration."}
+            ${process.env.PLAN}
             \`\`\`
 
             </details>
