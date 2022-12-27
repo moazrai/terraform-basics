@@ -9,7 +9,7 @@ terraform {
 
   backend "azurerm" {
     resource_group_name  = "tutorial-tfstate-rg"
-    storage_account_name = "tutorialtfhj8tetzd"
+    storage_account_name = "tutorialtfns6sk39i"
     container_name       = "tutorial-core-tfstate"
     key                  = "core.tutorial.tfstate"
   }
