@@ -96,7 +96,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
 
-  build:
+  checkov:
     name: Checkov
     runs-on: ubuntu-latest
     steps:
@@ -133,7 +133,28 @@ jobs:
           sarif_file: tfsec.sarif
 
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
-          # Path to SARIF file relative to the root of the repository
           sarif_file: tfsec.sarif
+
+  terrascan:
+    runs-on: ubuntu-latest
+    name: terrascan-action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Terrascan
+        id: terrascan
+        uses: tenable/terrascan-action@main
+        with:
+          iac_type: "terraform"
+          iac_version: "v14"
+          policy_type: "azure"
+          only_warn: true
+          sarif_upload: true
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: terrascan.sarif
