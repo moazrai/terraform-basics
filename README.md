@@ -17,3 +17,9 @@ Automating Terraform with CI/CD to enforce configuration best practices, promote
 Note: In the production environment, add "Require status checks to pass before merging" as a Branch Protection rule. This adds a layer of protection, ensuring that this workflow successfully completes before changes are merged into main.
 
 [Reference](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions#github-actions)
+
+## Useful Links
+
+- [Checkov](https://www.checkov.io/4.Integrations/GitHub%20Actions.html)
+- [Tfsec](https://github.com/marketplace/actions/run-tfsec-with-sarif-upload)
+- [Terrascan](https://runterrascan.io/docs/integrations/cicd/)
