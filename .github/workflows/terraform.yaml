@@ -139,7 +139,7 @@ jobs:
 
   terrascan:
     runs-on: ubuntu-latest
-    name: terrascan-action
+    name: Terrascan Sarif Report
     steps:
       - name: Checkout
         uses: actions/checkout@v3
