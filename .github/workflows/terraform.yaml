@@ -58,7 +58,7 @@ jobs:
         env:
           TF_CLI_ARGS: "-no-color -input=false"
 
-      - name: Add Terraform plan output to PR
+      - name: Update Pull Request
         uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
@@ -91,3 +91,7 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false
